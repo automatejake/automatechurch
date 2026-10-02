@@ -1,0 +1,27 @@
+body:has(.o_church_login) {
+    background-color: #4a1520 !important;
+    background-image: url("../img/pattern.svg");
+    background-size: 160px 160px;
+}
+
+.o_church_login .card {
+    background: #f7f2e8 !important;
+    border: 1px solid #c6a15b !important;
+    border-radius: 10px;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
+}
+
+.o_church_login .btn-primary {
+    background-color: #6e2433;
+    border-color: #6e2433;
+
+    &:hover,
+    &:focus {
+        background-color: #4a1520;
+        border-color: #4a1520;
+    }
+}
+
+.o_church_login a {
+    color: #6e2433;
+}

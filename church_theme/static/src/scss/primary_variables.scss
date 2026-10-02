@@ -1,0 +1,39 @@
+// Liturgical palette. These assignments follow Odoo's own !default values,
+// so they have to be plain assignments to take effect.
+$o-church-wine: #6e2433;
+$o-church-wine-deep: #4a1520;
+$o-church-gold: #c6a15b;
+$o-church-ivory: #f4efe4;
+$o-church-ink: #3a2e28;
+
+$o-community-color: $o-church-wine;
+$o-brand-odoo: $o-church-wine-deep;
+$o-brand-primary: $o-church-wine;
+$o-action: $o-church-wine;
+$o-main-link-color: darken($o-church-wine, 6%);
+$o-input-border-required: $o-church-wine;
+$o-component-active-bg: mix($o-church-wine, $o-gray-100, 16%);
+$o-webclient-background-color: $o-church-ivory;
+
+$o-navbar-background: $o-church-wine-deep;
+$o-navbar-border-bottom: 3px solid $o-church-gold;
+$o-navbar-entry-color: $o-church-ivory;
+$o-navbar-entry-color--hover: #fff;
+$o-navbar-entry-bg--hover: rgba($o-church-gold, 0.22);
+$o-navbar-entry-color--active: #fff;
+$o-navbar-entry-bg--active: rgba($o-church-gold, 0.3);
+$o-navbar-brand-color: $o-church-gold;
+
+$o-btns-bs-override: map-merge($o-btns-bs-override, (
+    "primary": (
+        background: $o-church-wine,
+        border: $o-church-wine,
+        color: #fff,
+        hover-background: darken($o-church-wine, 8%),
+        hover-border: darken($o-church-wine, 12%),
+        hover-color: #fff,
+        active-background: $o-church-wine-deep,
+        active-border: $o-church-wine-deep,
+        active-color: #fff,
+    ),
+));

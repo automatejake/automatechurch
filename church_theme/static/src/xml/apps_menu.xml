@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="church_theme.AppIcon">
+        <span t-attf-class="o_church_app_icon {{ props.size ? 'o_church_app_icon--' + props.size : '' }}" t-out="svg"/>
+    </t>
+
+    <t t-name="church_theme.AppsMenu">
+        <div class="o_navbar_apps_menu o_church_apps_menu">
+            <button
+                type="button"
+                class="o_church_apps_menu__toggle"
+                data-hotkey="h"
+                title="Home Menu"
+                aria-label="Home Menu"
+                t-att-aria-expanded="state.open ? 'true' : 'false'"
+                t-on-click="toggle"
+            >
+                <i class="oi oi-apps"/>
+            </button>
+            <t t-portal="'body'">
+                <div t-if="state.open" class="o_church_apps" role="dialog" aria-modal="true" aria-label="Applications">
+                    <div class="o_church_apps__inner">
+                        <header class="o_church_apps__header">
+                            <button type="button" class="o_church_apps__close" aria-label="Close" t-on-click="close">×</button>
+                            <svg class="o_church_apps__cross" viewBox="0 0 28 40" aria-hidden="true">
+                                <path d="M14 3v34M8 9h12M4 17h20M9 30l10-5" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                            </svg>
+                            <h1 t-if="companyName" class="o_church_apps__company" t-esc="companyName"/>
+                            <p class="o_church_apps__title">Applications</p>
+                            <input
+                                class="o_church_apps__search"
+                                type="search"
+                                placeholder="Search applications"
+                                aria-label="Search applications"
+                                t-ref="search"
+                                t-model="state.query"
+                            />
+                        </header>
+                        <div t-if="filteredApps.length" class="o_church_apps__grid">
+                            <a
+                                t-foreach="filteredApps"
+                                t-as="app"
+                                t-key="app.id"
+                                class="o_church_apps__item"
+                                t-att-class="{ 'is-active': props.currentApp &amp;&amp; props.currentApp.id === app.id }"
+                                t-att-href="appHref(app)"
+                                t-att-data-menu-xmlid="app.xmlid"
+                                t-on-click.prevent="() => this.selectApp(app)"
+                            >
+                                <ChurchAppIcon app="app"/>
+                                <span class="o_church_apps__name" t-esc="app.name"/>
+                            </a>
+                        </div>
+                        <p t-else="" class="o_church_apps__empty">No applications match that search.</p>
+                    </div>
+                </div>
+            </t>
+        </div>
+    </t>
+
+    <t t-inherit="web.NavBar.AppsMenu" t-inherit-mode="extension">
+        <xpath expr="//Dropdown" position="replace">
+            <ChurchAppsMenu apps="apps" currentApp="currentApp"/>
+        </xpath>
+    </t>
+
+    <t t-inherit="web.NavBar.AppsMenu.Sidebar" t-inherit-mode="extension">
+        <xpath expr="//nav[hasclass('o_burger_menu_content')]/div/img" position="replace">
+            <ChurchAppIcon app="currentApp" size="'sm'"/>
+        </xpath>
+        <xpath expr="//li[hasclass('o_app')]//img" position="replace">
+            <ChurchAppIcon app="app" size="'sm'"/>
+        </xpath>
+    </t>
+</templates>
