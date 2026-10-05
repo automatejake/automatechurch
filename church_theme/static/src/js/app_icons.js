@@ -37,10 +37,13 @@ const GLYPHS = {
     life: `<circle cx="16" cy="16" r="10"/><circle cx="16" cy="16" r="3.6"/><path d="M16 6v6.2M16 19.8V26M6 16h6.2M19.8 16H26"/>`,
     receipt: `<path d="M8 4h16v24l-2.6-1.8L18.5 28l-2.5-1.8L13.4 28 11 26.2 8 28z"/><path d="M12 10h8M12 14h8M12 18h5"/>`,
     bubble: `<path d="M6 6h18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H13l-7 5z"/>`,
+    shield: `<path d="M16 4l10 4v8c0 6-4.2 10-10 12-5.8-2-10-6-10-12V8z"/>`,
 };
 
 const MODULE_ICONS = {
     church_theme: ["dome", WINE],
+    license_server: ["shield", WINE],
+    license_checker: ["shield", BLUE],
     base: ["gear", WOOD],
     base_setup: ["gear", WOOD],
     web: ["grid", NIGHT],
@@ -145,4 +148,8 @@ export function iconSvg(app) {
     const name = (app.name || "?").trim();
     const letter = name.charAt(0).toUpperCase() || "?";
     return letterTile(letter, fillFor(key || name));
+}
+
+export function iconUrl(app) {
+    return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(iconSvg(app))}`;
 }
